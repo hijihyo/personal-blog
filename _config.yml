@@ -1,0 +1,75 @@
+############################# Jekyll configuration file #############################
+#
+# This configuration file is for some values which you set up once and rarely edit.
+# For values that need to be updated frequently, use a data file.
+
+# You should restart the server whenever you change this file.
+
+# References for YAML syntax:
+# - https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# - https://learnxinyminutes.com/docs/yaml/
+#
+#####################################################################################
+
+# SITE SETTINGS
+# Define some variables to personalize your site.
+# You can access them via {{ site.{variable_name} }} in HTML or Markdown files (with front matter).
+title: Blog
+owner: hijihyo # custom variable
+email: shkim9533@korea.ac.kr
+description: >- # this means to ignore newlines until "baseurl:"
+  끊임 없는 생각으로 스스로를 발전시켜가는 컴퓨터학 전공생입니다. 현재는 인공지능, 딥러닝, 그리고 약간의 웹 기술을 공부하고 있습니다.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: https://hijihyo.github.io # the base hostname & protocol for your site, e.g. http://example.com
+# twitter_username: ""
+github_username:  hijihyo
+baekjoon_username:  hijihyo # custom variable
+instagram_username:  hijihyo # custom variable
+
+# BUILD SETTINGS
+theme: minima
+plugins:
+  - jekyll-feed # you need to add tags to `_layouts/default.html`
+  # - jekyll-sitemap
+  # - jekyll-seo-tag # you need to add tags to `_layouts/default.html`
+
+# EXCLUDE SETTINGS
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
+exclude:
+  - README.md
+
+# COLLECTIONS SETTINGS
+# Similar to posts except the content doesn't have to be grouped by date.
+# Make `_{collection_name}` directory in the root, and then access it by `site.{collection_name}` in any pages.
+# collections:
+#   collection_name:
+#     output: true # create a page for each document in the collection
+
+# DEFAULT SETTINGS
+# Set a scope and apply some default front matter you'd like to.
+# defaults:
+#   - scope:
+#       path: ""
+#       type: "some_type"
+#     values:
+#       layout: "some_layout"
+#   - scope:
+#       path: ""
+#     values:
+#       layout: "default"
