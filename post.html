@@ -1,0 +1,21 @@
+---
+title: Posts
+---
+
+<h1 class="h2 mb-4">Posts</h1>
+
+<div class="row row-cols-1 row-cols-lg-2 g-4">
+    {% for post in site.posts %}
+        <a href="{{ post.url }}" class="d-block col text-decoration-none text-dark">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ post.date | date_to_string }}</small>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>

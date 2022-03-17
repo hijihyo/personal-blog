@@ -4,12 +4,12 @@
   link: /
   active: true
 - name: posts
-  # link: "#"
-  active: false
+  link: /post
+  active: true
 - name: repositories
   # link: "#"
   active: false
-- name: gallery
+- name: /gallery
   # link: "#"
   active: false
 - name: about
