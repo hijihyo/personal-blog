@@ -14,17 +14,17 @@
 # SITE SETTINGS
 # Define some variables to personalize your site.
 # You can access them via {{ site.{variable_name} }} in HTML or Markdown files (with front matter).
-title: Blog
+title: blog
 owner: hijihyo # custom variable
 email: shkim9533@korea.ac.kr
 description: >- # this means to ignore newlines until "baseurl:"
-  끊임 없는 생각으로 스스로를 발전시켜가는 컴퓨터학 전공생입니다. 현재는 인공지능, 딥러닝, 그리고 약간의 웹 기술을 공부하고 있습니다.
+  끊임 없는 생각으로 스스로를 발전시켜가는 컴퓨터학과 학부생입니다. 현재는 인공지능, 딥러닝, 그리고 약간의 웹 기술을 공부하고 있습니다.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: https://hijihyo.github.io # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: ""
 github_username:  hijihyo
-baekjoon_username:  hijihyo # custom variable
-instagram_username:  hijihyo # custom variable
+# baekjoon_username:  hijihyo # custom variable
+instagram_username:  hi_jihyo_ # custom variable
 
 # BUILD SETTINGS
 theme: minima
@@ -73,3 +73,8 @@ exclude:
 #       path: ""
 #     values:
 #       layout: "default"
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"

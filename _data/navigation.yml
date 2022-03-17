@@ -1,0 +1,17 @@
+# Store an array of navigation items each with a name and link here.
+# You can access this data by `site.data.navigation`.
+- name: home
+  link: /
+  active: true
+- name: posts
+  # link: "#"
+  active: false
+- name: repositories
+  # link: "#"
+  active: false
+- name: gallery
+  # link: "#"
+  active: false
+- name: about
+  link: /about
+  active: true
