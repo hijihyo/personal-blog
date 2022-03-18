@@ -1,8 +1,7 @@
 ---
-layout: post
-title:  "Lecture 4 Optimization"
 date:   2022-03-09 16:05:00 +0900
-categories: michigan dl-for-cv
+category: lecture-summary
+tags: michigan dl4cv
 ---
 
 *Justin Johnson님이 미시간대학교에서 진행했던 ‘컴퓨터 비전을 위한 딥러닝 (Deep learning for computer vision)’ 강의를 듣고 정리하겠다. (2019년도 가을 학기 기준)*
