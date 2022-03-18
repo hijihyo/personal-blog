@@ -6,29 +6,29 @@ tags: michigan dl4cv
 
 *Justin Johnson님이 미시간대학교에서 진행했던 ‘컴퓨터 비전을 위한 딥러닝 (Deep learning for computer vision)’ 강의를 듣고 정리하겠다. (2019년도 가을 학기 기준)*
 
-### 1. 선형 분류기의 한계와 속성 변환
+## 1. 선형 분류기의 한계와 속성 변환
 
-**선형 분류기의 한계 (Problems of Linear Classifiers)**
+### 선형 분류기의 한계 (Problems of Linear Classifiers)
 
 앞서 선형 분류기가 무엇인지 다양한 관점에서 살펴보았다. 지리적 관점에서, 선형 분류기를 학습시키는 것은 데이터 공간에서 데이터를 클래스별로 분리하는 초평면 (hyperplane) 을 찾는 것과 유사하다. 그리고 시각적 관점에서 선형 분류기의 동작은 클래스별 템플릿 중에서 주어진 이미지와 가장 유사한 쪽으로 분류하는 것으로 이해할 수 있었다.
 
 그러나 이를 다르게 해석하면 선형 분류기의 결정 경계는 초평면 형태만 가능하고 클래스마다 템플릿 이미지가 딱 하나만 존재한다는 의미가 된다. 이와 같은 한계점을 어떻게 극복할 수 있을까?
 
-**속성 변환 (Feature Transform)**
+### 속성 변환 (Feature Transform)
 
 **속성 변환 (Feature transform)** 이 하나의 대안이 될 수 있다. 속성 변환은 주어진 데이터 공간을 다른 공간으로 변환하여 활용하는 것이다. 아래 그림과 같이 데카르트 좌표계를 극 좌표계로 바꾸는 것이 그 예이다. 특히 해당 예시에서는 데카르트 좌표계의 데이터들은 선형적으로 분리될 수 없지만 (not linearly separable), 극 좌표계에서는 가능하다는 것을 확인할 수 있다.
 
 ![선형 분리성과 속성 변환](/assets/images/2022-03-17-lecture-5-neural-networks/resource-1.png)
 
-### 2. 이미지 속성 벡터와 뉴럴 네트워크 (Image Feature Vectors and Neural Networks)
+## 2. 이미지 속성 벡터와 뉴럴 네트워크
 
-**이미지 속성 벡터 (Image Feature Vectors)**
+### 이미지 속성 벡터 (Image Feature Vectors)
 
 그렇다면 어떤 속성 혹은 어떤 공간을 변환해야 할까? 컴퓨터 비전에서는 이미지로부터 **속성 벡터 (feature vector)** 를 추출하여 사용한다. 속성 벡터를 추출하는 방법으로는 여러 가지가 존재한다. 색깔 히스토그램 (Color histogram) 이라 하여 이미지에 존재하는 색깔로 벡터를 생성하기도 하고, HoG (Histogram of oriented gradients) 와 같이 색깔 대신 경계선의 방향과 세기로 속성을 추출하기도 한다. 데이터 기반 방식에 가까운 BoW (Bag of Words) 기법을 선택할 수도 있다.
 
 하지만 이들은 속성 벡터를 추출하고자 하는 사람이 이를 어떻게 수행할 것인지 고민하고 시도해봐야 한다는 한계가 있다. 뉴럴 네트워크는 이와 같은 과정 없이도 속성 벡터를 얻을 수 있다는 점에서 효과적이다.
 
-**뉴럴 네트워크 (Neural Networks)**
+### 뉴럴 네트워크 (Neural Networks)
 
 앞서 선형 분류기를 다음과 같이 표현하였다:
 
@@ -55,17 +55,17 @@ $$
 
 선형 분류기가 클래스마다 하나의 템플릿만을 가졌던 것과는 다르게, 뉴럴 네트워크는 다양한 템플릿을 가지는 대신 인간이 해석하기는 어려운 형태를 띄고 있다. 이는 뉴럴 네트워크에서는 템플릿이 분산되어 표현되기 때문이라고 이해할 수 있다 (?).
 
-### 3. 활성화 함수
+## 3. 활성화 함수
 
-**활성화 함수 (Activation Functions)**
+### 활성화 함수 (Activation Functions)
 
 뉴럴 네트워크의 표현식에서 $\max(0,z)$는 해당 레이어에 비선형성을 부여하는 역할을 한다. 이러한 함수를 **활성화 함수 (Activation function)** 라고 하며, 일반적으로 ReLU (Rectified linear unit) 함수 ($\text{ReLU}(z)=\max(0,z)$) 를 사용한다. 이외에도 다음과 같은 함수가 존재한다.
 
 ![활성화 함수 예시](/assets/images/2022-03-17-lecture-5-neural-networks/resource-3.png)
 
-### 4. 뉴럴 네트워크와 공간 왜곡
+## 4. 뉴럴 네트워크와 공간 왜곡
 
-**뉴럴 네트워크와 공간 왜곡 (Neural Networks and Space Warping)**
+### 뉴럴 네트워크와 공간 왜곡 (Neural Networks and Space Warping)
 
 선형 분류기는 선형적으로 분리되지 않는 (not linearly separable) 데이터가 주어졌을 때 완벽하게 학습하지는 못한다는 한계가 있었다. 선형 분류기는 속성을 선형적으로 변환한다. 그렇기 때문에 본래 공간에서 선형적으로 나뉘지 않는 데이터는 변환된 공간에서도 분리할 수 없었다.
 
@@ -79,9 +79,9 @@ $$
 
 ![뉴럴 네트워크와 비선형 분리](/assets/images/2022-03-17-lecture-5-neural-networks/resource-6.png)
 
-### 5. 볼록 함수와 최적화 문제의 수렴성
+## 5. 볼록 함수와 최적화 문제의 수렴성
 
-**볼록 함수와 최적화 문제 (Convex Functions and Optimization Problems)**
+### 볼록 함수와 최적화 문제 (Convex Functions and Optimization Problems)
 
 볼록 함수의 정의는 다음과 같다:
 

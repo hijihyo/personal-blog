@@ -6,9 +6,9 @@ tags: michigan dl4cv
 
 *Justin Johnson님이 미시간대학교에서 진행했던 ‘컴퓨터 비전을 위한 딥러닝 (Deep learning for computer vision)’ 강의를 듣고 정리하겠다. (2019년도 가을 학기 기준)*
 
-### 1. 최적화와 임의 검색법 (Optimization and Random Search)
+## 1. 최적화와 임의 검색법 (Optimization and Random Search)
 
-**최적화**
+### 최적화
 
 지난 시간에는 선형 분류기 $f(x; W)=Wx$ 에 대해 손실 함수를 정의하여 가중치 $W$를 평가하는 방법을 다루었다. 이제는 손실 함수의 값이 가장 작게 나오는 가중치를 선택하여 선형 분류기의 가중치로 사용하면 된다. 그러나 “가장 적합한 가중치” 내지 “손실 함수의 값이 가장 작은 가중치”를 어떻게 찾을 것인가? 
 
@@ -26,7 +26,7 @@ $$
 
 이와 같을 때 손실 함수의 값을 최소화해나가는 과정은, 우리가 위 지형의 한 점에서 출발하여 가장 낮은 곳으로 하강해나가는 과정과 동일할 것이다. 
 
-**임의 검색법 (Random search)**
+### 임의 검색법 (Random search)
 
 최적화를 수행하기 위한 가장 쉬운 방법은 **임의 검색법 (Random search)** 이다. 이 기법에서는 가중치 $W$의 값을 임의로 선택하여 여러 번 시도해본 후 그 중에서 손실 함수의 값이 가장 작았던 가중치를 선택한다. 가중치를 어떻게 선택하느냐에 따라 결과가 매번 달라질 수 있으며 예측 성능도 그다지 좋지는 않다.
 
@@ -40,9 +40,9 @@ $$
 
 04 Optimization - Random Search
 
-### 2. 그래디언트 계산 (Computing Gradients)
+## 2. 그래디언트 계산 (Computing Gradients)
 
-**수치적 그래디언트 (Numerical gradient)**
+### 수치적 그래디언트 (Numerical gradient)
 
 경사 하강법을 다루기 전에 그래디언트와 이를 계산하는 방법을 알아보자.
 
@@ -68,13 +68,13 @@ $$
 
 수치적 그래디언트는 구하기는 쉽지만, 각 차원마다 손실 함수값을 구해서 계산해야 하기 때문에 시간 복잡도가 $O(\sharp\text{dimensions})$ 로 느리다. 그리고 수치 미분값은 근사값일 뿐 실제 그래디언트를 계산한 것은 아니다. 이러한 이유로 수치적 그래디언트는 직접 사용하지 않으며, 다른 방법으로 구한 그래디언트가 맞는지 확인하는 용도 (gradient check) 로 사용한다.
 
-**해석적 그래디언트 (Analytic gradient)**
+### 해석적 그래디언트 (Analytic gradient)
 
 해석적 그래디언트 (Analytic gradient) 는 해석 미분 (Analytic differentiation) 을 이용하여 구한 것으로, 손실 함수와 가중치의 관계에 수학적 배경 지식을 적용하여 구한 것이다. 해석적 그래디언트 식을 이끌어내는 과정에서 실수하기는 쉬우나, 빠르고 정확하다는 점에서 수치적 그래디언트를 압도한다. 어떻게 구하는지는 추후에 다루기로 하자.
 
-### 3. 경사 하강법 (Gradient Descent)
+## 3. 경사 하강법 (Gradient Descent)
 
-**경사 하강법 (Gradient descent)**
+### 경사 하강법 (Gradient descent)
 
 강의 초반부에 따르면 최적화 기법은 임의의 지형에서 하강해나가는 것과 유사하다고 했다. 만약 우리가 처음 보는 산의 정상에 있다면 어떻게 내려갈 것인가? 아마도 대부분의 사람들은 내려가는 방향으로 걸음을 옮기면서 하산할 것이다.
 
@@ -100,7 +100,7 @@ $$
 \nabla_WL(W) = \cfrac{1}{N}\displaystyle\sum_{i=1}^N{\nabla_WL_i(x_i, y_i, W)} + \lambda\nabla_WR(W)
 $$
 
-**확률적 경사 하강법 (Stochastic gradient descent; SGD)**
+### 확률적 경사 하강법 (Stochastic gradient descent; SGD)
 
 배치 경사 하강법을 도입할 경우 한 스텝 나아갈 때마다 $N$개의 데이터에 대해 손실 함수와 이의 그래디언트를 구해야 한다. $N$이 커질수록 더 많은 양을 계산해야 하기 때문에 이러한 방식은 비효율적이다. 이러한 단점을 개선한 것이 바로 **확률적 경사 하강법 (Stochastic gradient descent; SGD)** 이다. 확률적 경사 하강법에서는 매 스텝마다 특정한 개수의 데이터를 임의로 선택하여 이들로만 가중치를 업데이트한다.
 
@@ -129,9 +129,9 @@ for t in range(num_steps):
 	w -= learning_rate * dw
 ```
 
-### 4. 경사 하강법의 변형 (Variations of Gradient Descent)
+## 4. 경사 하강법의 변형 (Variations of Gradient Descent)
 
-**SGD의 한계**
+### SGD의 한계
 
 1. 함수가 한 방향으로는 천천히 변화하고 다른 방향으로는 가파르게 변화하는 형태를 가진다면, SGD에서는 기울기가 낮은 방향으로는 천천히 진행되고 기울기가 급한 방향으로는 진동할 수 있다 (과하게 진전했다가 되돌아오는 형태). 손실 함수가 높은 조건수 (condition number; 파라미터에서의 작은 비율에 대해 함수가 얼마나 변화할 수 있는지) 를 가진다. (?)
 2. 그래프에서 안장점 (saddle point; 쪽 그림. 마치 말의 안장과 같이 한 방향으로는 감소하고 다른 방향으로는 증가하는 점으로, 해당 점의 그래디언트는 0) 이나 극소점 (local minimum; 함수의 최솟값은 아니나 해당 점의 주변 값보다 낮은 지점) 이 나타난다면, 해당 점에 갇힐 수 있다.
@@ -144,7 +144,7 @@ for t in range(num_steps):
 
 다음 알고리즘들은 이러한 SGD의 한계를 극복하기 위해 고안된 것들이다.
 
-**SGD+Momentum**
+### SGD+Momentum
 
 SGD+Momentum 기법은 관성이라는 물리적 현상에 착안하여 만들어진 것으로 (?), 속도 (velocity) 를 계산하여 해당 방향으로 진전하는 기법이다. 속도는 그래디언트의 지수 이동 평균 (exponential moving average, exponentially weighted moving average) 이다.
 
@@ -158,7 +158,7 @@ for t in range(num_steps):
 
 SGD+Momentum 기법에서는 꾸준히 진행해온 방향으로 나아가려는 성질이 있기 때문에 극소점이나 안장점에서 벗어날 수 있는 가능성이 존재한다.
 
-**Nesterov Momentum**
+### Nesterov Momentum
 
 $$
 \begin{matrix}
@@ -182,7 +182,7 @@ for t in range(num_steps):
 
 SGD+Momentum 기법과 네스테로프 모멘텀 기법은 바닐라 SGD 기법보다 학습 과정을 가속화하지만, 급격하게 나아갔다가 되돌아오는 경향 (overshoot) 이 있다.
 
-**AdaGrad**
+### AdaGrad
 
 SGD 기법에서는 그래디언트의 크기로 인해 완만한 곳은 천천히 가고 가파른 곳은 빠르게 가는 단점이 있었다. 이를 완화하기 위해 **AdaGrad 기법**에서는 그래디언트의 제곱값을 모두 더하여 이 값의 제곱근으로 학습률를 나눈다. (경사 하강 과정에서 그래디언트 내지 스텝의 크기를 일정하게 유지하기 위함인 것 같다. (?)) 그래디언트의 크기에 따라 학습률을 조절한다는 점에서 (?) 파라미터별 학습률 (Per-parameter learning rates) 혹은  적응형 학습률 (Adaptive learning rates) 라고도 부른다.
 
@@ -196,7 +196,7 @@ for t in range(num_steps):
 	w -= learning_rate * dw / (grad_squared.sqrt() + 1e-7)
 ```
 
-**RMSProp**
+### RMSProp
 
 그러나 AdaGrad 기법에서는 그래디언트의 제곱값을 계속 더하기 때문에 시간이 지남에 따라 이 합이 너무 커진다는 단점이 존재한다. RMSProp 기법에서는 그래디언트의 제곱값의 지수 이동 평균을 대신 사용하여 이러한 단점을 해결한다.
 
@@ -209,7 +209,7 @@ for t in range(num_steps):
 	w -= learning_rate * dw / (grad_squared.sqrt() + 1e-7)
 ```
 
-**Adam**
+### Adam
 
 Adam 기법은 RMSProp 기법과 모멘텀 기법을 결합한 것이다. RMSProp 기법은 현재 위치의 경사에 따라 속도가 급격하게 변하는 것을 방지하고, 모멘텀 기법은 꾸준히 진행해온 방향으로 갈 수 있도록 하는데,  이 두 기법을 조합한 것이다. 알고리즘은 다음과 같다:
 
@@ -239,6 +239,6 @@ for t in range(num_steps):
 
 Adam 기법은 다양한 태스크에서 잘 동작하는 최적화 기법으로 자주 사용된다. 실제 사용 시 $\beta_1=0.9$, $\beta_2=0.999$, 그리고 학습률은 $1e-3$, $5e-4$, $1e-4$ 중에서 하나로 선택한다.
 
-**2차 최적화 (2nd order optimization)**
+### 2차 최적화 (2nd order optimization)
 
 위 알고리즘들과 같이 BFGS, L-BFGS 기법과 같이 1차 근사를 이용하지 않고 2차 미분값을 이용하는 기법이 있다. 이들은 스텝 크기를 더 정확하게 구할 수 있고 잘 동작하지만, 시간 복잡도가 크고 미니배치에서는 잘 동작하지 않는다는 단점이 있다. 따라서 기본적으로 Adam이나 SGD+Momentum 기법을 채택하되 풀배치 (full batch) 가 가능하다면 L-BFGS 기법을 고려하는 것도 좋을 것 같다.

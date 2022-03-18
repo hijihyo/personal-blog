@@ -67,6 +67,14 @@
             background: #F7F6F3;
         }
 
+        #content h2 {
+            font-size: 1.5rem !important;
+        }
+
+        #content h3 {
+            font-size: 1.2rem;
+        }
+
         /* md */
         @media screen and (min-width: 768px) {
             #content-container {
@@ -80,7 +88,7 @@
 
         /* lg */
         @media screen and (min-width: 992px) {
-            #content-container {
+            #post {
                 width: 65%;
             }
 
@@ -95,12 +103,14 @@
 
     <div class="container">
         {% include header.html %}
-        <div id="content-container" class="container py-1 py-md-2 py-lg-4">
+        <div id="post" class="container py-1 py-md-2 py-lg-4">
             <div class="p-0 pb-2 pb-md-3">
                 <h1 class="h2">{{ page.title }}</h1>
                 <h2 class="h6" style="color: #505050;">{{ page.date | date_to_string }} • {{ site.owner }}</h2>
             </div>
-            {{ content }}
+            <div id="content">
+                {{ content }}
+            </div>
         </div>
         {% include footer.html %}
     </div>
